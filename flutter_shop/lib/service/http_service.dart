@@ -16,7 +16,6 @@ Future request(String url, {formdata})async {
       
       response = await dio.post(servicePath[url], data: formdata);
     }
-    print('${response.statusCode} ================================');
     if(response.statusCode == 200) {
       return response;
     }

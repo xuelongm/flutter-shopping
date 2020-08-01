@@ -1,22 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provide/provide.dart';
+import '../../provide/index.dart';
 
 // 分类导航组件
 class TopNavigator extends StatelessWidget {
   final List<Map> navagatorList;
 
   const TopNavigator(this.navagatorList, {Key key}) : super(key: key);
-
-  Widget _gridViewItemUI(BuildContext context, item, index) {
-    return InkWell(
-        onTap: () {},
-        child: Column(
-          children: <Widget>[
-            Image.network(item['image'], width: ScreenUtil().setWidth(95)),
-            Text(item['firstCategoryName'])
-          ],
-        ));
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,4 +30,28 @@ class TopNavigator extends StatelessWidget {
           }).toList(),
         ));
   }
+
+  Widget _gridViewItemUI(BuildContext context, item, index) {
+    return InkWell(
+      onTap: () {
+        this._changeCategory(context, index);
+      },
+      child: Column(
+        children: <Widget>[
+          Image.network(item['image'], width: ScreenUtil().setWidth(95)),
+          Text(item['firstCategoryName'])
+        ],
+      ),
+    );
+  }
+
+  void _changeCategory(BuildContext context, int index) {
+    final indexProvide = Provide.value<CurrentIndexProvide>(context);
+    final categoryProvide = Provide.value<CategoryProvide>(context);
+    indexProvide.setCurrentIndex(1);
+    final category = this.navagatorList[index];
+    categoryProvide.changeFirstCategory(category['firstCategoryId'], index);
+  }
+
+  
 }
