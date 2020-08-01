@@ -97,7 +97,9 @@ class _LeftCategoryNavigatorState extends State<LeftCategoryNavigator> {
         this._categoryList = new List<Category>();
         categoriers
             .forEach((item) => this._categoryList.add(Category.fromJSON(item)));
-        print(this._categoryList);
+        Provide.value<CategoryProvide>(context).getSecondCategoryVO(
+            this._categoryList[0].secondCategories,
+            this._categoryList[0].firstCategoryId);
       });
     }
   }

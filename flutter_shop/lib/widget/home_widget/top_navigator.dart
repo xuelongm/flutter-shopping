@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provide/provide.dart';
 import '../../provide/index.dart';
+import '../../model/category_model.dart';
 
 // 分类导航组件
 class TopNavigator extends StatelessWidget {
@@ -49,8 +50,9 @@ class TopNavigator extends StatelessWidget {
     final indexProvide = Provide.value<CurrentIndexProvide>(context);
     final categoryProvide = Provide.value<CategoryProvide>(context);
     indexProvide.setCurrentIndex(1);
-    final category = this.navagatorList[index];
-    categoryProvide.changeFirstCategory(category['firstCategoryId'], index);
+    final category = Category.fromJSON(this.navagatorList[index]);
+    categoryProvide.changeFirstCategory(category.firstCategoryId, index);
+    categoryProvide.getSecondCategoryVO(category.secondCategories, category.firstCategoryId);
   }
 
   
