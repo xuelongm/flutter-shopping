@@ -33,7 +33,6 @@ class IndexPage extends StatelessWidget {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
     final currentIndexPage = Provide.value<CurrentIndexProvide>(context);
-    print('start index page build ...........................');
     return Provide<CurrentIndexProvide>(
       builder: (context, child, index) {
         return Scaffold(

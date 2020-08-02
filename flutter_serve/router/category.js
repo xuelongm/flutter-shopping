@@ -5,6 +5,9 @@ const routes = express();
 const config = require("./config");
 const category_url = "http://" + config.IP + ":" + config.PORT + "/images/category/";
 
+let index = 0;
+
+
 routes.use('/', (req, res) => {
   var data = {
     "code": "0",

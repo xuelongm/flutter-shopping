@@ -20,14 +20,18 @@ class _HomePageState extends State<HomePage>
   List<Map> hotGoodsList;
 
   EasyRefreshController _controller;
+
+  ScrollController _scrollController;
+  
   // GlobalKey<RefreshState> _footerKey = GlobalKey<RefreshFooterState>();
 
-  bool _enableLoad = false;
+  bool isEndLoadMore = false;
 
   @override
   void initState() {
     this.hotGoodsList = [];
     super.initState();
+    this._scrollController = new ScrollController();
     this._controller = new EasyRefreshController();
   }
 
@@ -54,10 +58,13 @@ class _HomePageState extends State<HomePage>
                 enableControlFinishLoad: true,
                 enableControlFinishRefresh: false,
                 controller: this._controller,
+                scrollController: this._scrollController,
                 // header: ClassicalHeader(),
-                // footer: this._enableLoad ? ClassicalFooter(
-                //   loadText: '正在加载...'
-                // ) : null,
+                footer: ClassicalFooter(
+                  loadingText: '正在加载...',
+                  noMoreText: '没有更多加载内容',
+                  showInfo: false,
+                ),
                 onLoad: () async {
                   this._getHotGoods(0);
                 },
@@ -85,10 +92,8 @@ class _HomePageState extends State<HomePage>
     Map body = {'index': pageIndex};
     request('hotGoods').then((value) {
       final data = json.decode(value.toString());
-      print(data);
       this.setState(() {
         this.hotGoodsList.addAll((data['data'] as List).cast());
-        print(this.hotGoodsList);
         this._controller.finishLoad(success: true, noMore: false);
       });
     });

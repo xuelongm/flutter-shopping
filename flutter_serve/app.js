@@ -26,3 +26,4 @@ app.listen(port, () => {
 app.use('/homePageContent', require('./router/home_page_content'));
 app.use('/hotgoods', require('./router/hotgoods'));
 app.use('/category', require('./router/category'));
+app.use('/categoryGoods', require('./router/category_goods'));

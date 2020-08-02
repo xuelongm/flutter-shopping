@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'dart:async';
-import '../config/http_conf.dart';
-import 'dart:io';
-import '../config/index.dart';
+import 'package:flutter_shop/config/http_conf.dart';
 
 Future request(String url, {formdata})async {
   try {
@@ -10,7 +8,6 @@ Future request(String url, {formdata})async {
     Dio dio = Dio();
     dio.options.contentType = Headers.formUrlEncodedContentType;
     if(formdata == null) {
-      print(servicePath[url]);
       response = await dio.post(servicePath[url]);
     } else {
       

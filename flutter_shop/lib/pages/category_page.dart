@@ -25,7 +25,12 @@ class _CategoryPageState extends State<CategoryPage> {
         body: Row(
           children: [
             LeftCategoryNavigator(),
-            Column(children: [RightCategoryNavigator()]),
+            Column(
+              children: [
+                RightCategoryNavigator(),
+                CategoryGoods(),
+              ],
+            ),
           ],
         ),
       ),

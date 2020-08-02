@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../model/category_model.dart';
-
 class CategoryProvide with ChangeNotifier {
   List<SecondCategoryVO> secondCategoryList = []; //二级分类列表
   int secondCategoryIndex = 0; //二级分类索引
