@@ -1,4 +1,7 @@
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shop/routers/application.dart';
+import 'package:flutter_shop/routers/routes.dart';
 import './pages/index_page.dart';
 import 'package:provide/provide.dart';
 import 'config/index.dart';
@@ -19,9 +22,13 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Router router = Router();
+    Routes.configureRoutes(router);
+    Application.router = router;
     return MaterialApp(
         title: KString.mainTitle,
         debugShowCheckedModeBanner: false,
+        onGenerateRoute: Application.router.generator,
         theme: ThemeData(
           primaryColor: KColor.primaryColor,
           // primarySwatch: Colors.blue
